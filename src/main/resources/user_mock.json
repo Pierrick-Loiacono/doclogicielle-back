@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "firstname": "Admin",
+    "lastname": "Admin",
+    "mail": "admin@formabois.fr",
+    "password": "password",
+    "usertype": "ADMIN"
+  },
+  {
+    "id": 2,
+    "firstname": "User",
+    "lastname": "User",
+    "mail": "user@formabois.fr",
+    "password": "password",
+    "usertype": "USER"
+  }
+]
