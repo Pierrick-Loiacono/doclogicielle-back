@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 /**
  * Class pour une requête d'inscription
- * @author Romain CHAHINE <romain.chahine@outlook.fr>
+ * @author Groupe3
  */
 @Data
 public class SubscriptionRequest {

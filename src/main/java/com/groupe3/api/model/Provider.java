@@ -47,4 +47,16 @@ public class Provider {
         this.address = address;
         this.phone = phone;
     }
+
+    /**
+     * Constructor surchage for new provider
+     * @param firmName
+     * @param address
+     * @param phone
+     */
+    public Provider(String firmName, String address, String phone) {
+        this.firmName = firmName;
+        this.address = address;
+        this.phone = phone;
+    }
 }

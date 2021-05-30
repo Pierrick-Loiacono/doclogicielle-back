@@ -21,12 +21,12 @@ public class Product {
     /**
      * Product price
      */
-    private float price;
+    private Long price;
 
     /**
      * Product stock
      */
-    private int quantity;
+    private Long quantity;
 
     /**
      * Product supplier
@@ -46,12 +46,26 @@ public class Product {
      * @param quantity quantity left
      * @param provider product supplier
      */
-    public Product(Long id, String designation, float price, int quantity, Provider provider) {
+    public Product(Long id, String designation, Long price, Long quantity, Provider provider) {
         this.id = id;
         this.designation = designation;
         this.price = price;
         this.quantity = quantity;
         this.provider = provider;
+    }
+
+    /**
+     * Constructor surcharge to update product
+     * @param id id of existing product
+     * @param designation new designation
+     * @param price new price
+     * @param quantity new quantity
+     */
+    public Product(Long id, String designation, Long price, Long quantity) {
+        this.id = id;
+        this.designation = designation;
+        this.price = price;
+        this.quantity = quantity;
     }
 }
 

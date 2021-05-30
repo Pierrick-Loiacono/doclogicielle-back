@@ -70,6 +70,7 @@ public class User {
      * @param usertype user type
      */
     public User(Long id, String firstName, String lastName, String mail, String password, Usertype usertype) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;

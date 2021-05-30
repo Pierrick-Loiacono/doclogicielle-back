@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * Classe qui s'occupe de vérifier l'intégrité des mots de passes
  * ainsi que la génération et validation de JSONWEBTOKENS
- * @Author Romain CHAHINE <romain.chahine@outlook.fr>
+ * @author Groupe3
  */
 @Component
 public class Security {
@@ -55,12 +55,13 @@ public class Security {
     }
 
     /**
-     * Génère un JWT(jsonwebtoken) avec
+     * Génère un JWT(jsonwebtoken)
      * @param body
      * @see RsaJsonWebKey
      * @see RsaJwkGenerator
      * @see JwtClaims
      * @see JsonWebSignature
+     * @deprecated N'utilise plus de JWT (bug pas résolu)
      * @throws JoseException
      * @return le JWT généré
      */
@@ -85,6 +86,7 @@ public class Security {
 
         // The JWT is signed using the private key
         jws.setKey(this.rsaJsonWebKey.getPrivateKey());
+        System.out.println(this.rsaJsonWebKey.getPrivateKey());
 
         // Set the Key ID (kid) header because it's just the polite thing to do.
         // We only have one key in this example but a using a Key ID helps
@@ -102,7 +104,15 @@ public class Security {
         return jws.getCompactSerialization();
     }
 
+    /**
+     * Décode un le payload d'un JWT
+     * @param jwt
+     * @deprecated N'utilise plus de JWT (bug pas résolu)
+     * @return
+     * @throws InvalidJwtException
+     */
     public Map<String, Object> readJWT(final String jwt) throws InvalidJwtException {
+        System.out.println(this.rsaJsonWebKey.getKey());
         JwtConsumer jwtConsumer = new JwtConsumerBuilder()
             .setRequireExpirationTime() // the JWT must have an expiration time
             .setAllowedClockSkewInSeconds(30) // allow some leeway in validating time based claims to account for clock skew
@@ -118,6 +128,6 @@ public class Security {
         JwtClaims jwtClaims = jwtConsumer.processToClaims(jwt);
         return jwtClaims.getClaimsMap();
 
-
     }
+
 }

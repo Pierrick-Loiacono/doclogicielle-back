@@ -21,6 +21,7 @@ import org.json.simple.parser.ParseException;
 /**
  * Service of User class
  * @see Service
+ * @author Groupe3
  */
 @Service
 public class UserService {
@@ -66,14 +67,13 @@ public class UserService {
      */
     private static User parseUserObject(JSONObject us)
     {
-        System.out.println(Security.hashPassword((String)us.get("password")));
         return new User(
             (Long) us.get("id"),
             (String) us.get("firstname"),
             (String) us.get("lastname"),
             (String) us.get("mail"),
             Security.hashPassword((String)us.get("password")),
-            us.get("usertype") == Usertype.ADMIN.toString() ? Usertype.ADMIN : Usertype.USER
+            Usertype.ADMIN.toString().equals(us.get("usertype")) ? Usertype.ADMIN : Usertype.USER
         );
     }
 
@@ -82,6 +82,8 @@ public class UserService {
      * @param user the user to add
      */
     public void create(User user) {
+        user.setId((long) (this.users.size() + 1));
+        user.setPassword(Security.hashPassword(user.getPassword()));
         this.users.add(user);
     }
 
@@ -92,7 +94,6 @@ public class UserService {
      */
     public Optional<User> retrieveUser(final String email) {
         Optional<User> user = this.users.stream().filter(u -> u.getMail().equals(email)).findFirst();
-        System.out.println(user.get());
         return user;
     }
 
@@ -112,5 +113,13 @@ public class UserService {
      */
     public ArrayList<User> all() {
         return this.users;
+    }
+
+    /**
+     * Delete a user
+     * @param id user id to delete
+     */
+    public void deleteUser(final int id) {
+        this.users.removeIf(u -> u.getId() == id);
     }
 }

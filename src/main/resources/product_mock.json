@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "designation": "Bois d'hérable",
+    "price": 10,
+    "quantity": 1423,
+    "provider": {
+      "id": 1,
+      "firmName": "MonBeauBois",
+      "address":  "3 rue des olivier",
+      "phone": "56786567898"
+    }
+  },
+  {
+    "id": 2,
+    "designation": "Vis à placo",
+    "price": 1,
+    "quantity": 2131412341,
+    "provider": {
+      "id": 2,
+      "firmName": "MaBelleQuincaillerie",
+      "address":  "3 rue des quincaillers",
+      "phone": "56786567898"
+    }
+  },
+  {
+    "id": 3,
+    "designation": "Colle à bois",
+    "price": 5,
+    "quantity": 12132,
+    "provider": {
+      "id": 2,
+      "firmName": "MaBelleMenuiserie",
+      "address":  "3 rue des menuisier",
+      "phone": "56786567898"
+    }
+  }
+]
