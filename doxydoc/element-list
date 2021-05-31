@@ -1,0 +1,7 @@
+com.groupe3.api
+com.groupe3.api.controller
+com.groupe3.api.model
+com.groupe3.api.schema.request
+com.groupe3.api.schema.response
+com.groupe3.api.service
+com.groupe3.api.utils

@@ -138,7 +138,7 @@ public class ProductProviderService {
 
     /**
      * Delete a product on the list
-     * @param productId
+     * @param productId product id to delete
      */
     public void deleteProduct(final long productId) {
         this.products.removeIf(p -> p.getId() == productId);
@@ -146,7 +146,7 @@ public class ProductProviderService {
 
     /**
      * Delete a provider on the list
-     * @param providerId
+     * @param providerId provider id to delete
      */
     public void deleteProvider(final long providerId) {
         this.providers.removeIf(p -> p.getId() == providerId);

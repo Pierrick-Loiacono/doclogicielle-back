@@ -35,6 +35,8 @@ public class ChantierController {
 
     /**
      * Constructor
+     * @param us UserService
+     * @param cs ConstructionService
      * @see Autowired
      */
     @Autowired

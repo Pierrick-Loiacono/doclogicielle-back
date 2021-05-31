@@ -31,6 +31,7 @@ public class UserService {
 
     /**
      * Constructor
+     * @param security Security service
      */
     @Autowired
     public UserService(Security security) {
@@ -109,7 +110,7 @@ public class UserService {
 
     /**
      * Return a list of all users
-     * @return
+     * @return all users
      */
     public ArrayList<User> all() {
         return this.users;

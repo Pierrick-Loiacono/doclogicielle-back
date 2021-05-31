@@ -56,13 +56,13 @@ public class Security {
 
     /**
      * Génère un JWT(jsonwebtoken)
-     * @param body
+     * @param body payload of JWT
      * @see RsaJsonWebKey
      * @see RsaJwkGenerator
      * @see JwtClaims
      * @see JsonWebSignature
      * @deprecated N'utilise plus de JWT (bug pas résolu)
-     * @throws JoseException
+     * @throws JoseException exception pour la création de JWT
      * @return le JWT généré
      */
     public String generateJWT(final HashMap<String, Object> body) throws JoseException {
@@ -106,10 +106,10 @@ public class Security {
 
     /**
      * Décode un le payload d'un JWT
-     * @param jwt
+     * @param jwt JWT à décoder
      * @deprecated N'utilise plus de JWT (bug pas résolu)
-     * @return
-     * @throws InvalidJwtException
+     * @throws InvalidJwtException exception lors du décodage du JWT
+     * @return Payload du token
      */
     public Map<String, Object> readJWT(final String jwt) throws InvalidJwtException {
         System.out.println(this.rsaJsonWebKey.getKey());

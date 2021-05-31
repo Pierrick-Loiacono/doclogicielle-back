@@ -50,9 +50,9 @@ public class Provider {
 
     /**
      * Constructor surchage for new provider
-     * @param firmName
-     * @param address
-     * @param phone
+     * @param firmName society name
+     * @param address address
+     * @param phone phone number
      */
     public Provider(String firmName, String address, String phone) {
         this.firmName = firmName;

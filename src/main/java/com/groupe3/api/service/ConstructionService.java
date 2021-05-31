@@ -36,6 +36,7 @@ public class ConstructionService {
     private ProductProviderService pps;
     /**
      * Constructor
+     * @param pps ProductProviderService autowired service
      */
     @Autowired
     public ConstructionService(ProductProviderService pps) {

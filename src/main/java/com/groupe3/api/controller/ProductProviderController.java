@@ -36,6 +36,8 @@ public class ProductProviderController {
 
     /**
      * Constructor
+     * @param ps ProductProviderService
+     * @param us UserService
      * @see Autowired
      */
     @Autowired

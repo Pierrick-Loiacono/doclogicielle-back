@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.groupe3.api"},{"l":"com.groupe3.api.controller"},{"l":"com.groupe3.api.model"},{"l":"com.groupe3.api.schema.request"},{"l":"com.groupe3.api.schema.response"},{"l":"com.groupe3.api.service"},{"l":"com.groupe3.api.utils"}]

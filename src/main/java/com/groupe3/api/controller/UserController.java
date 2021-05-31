@@ -75,7 +75,7 @@ public class UserController {
 
     /**
      * Renvoi l'utilisateur dont l'id est spécifié dans les entêtes
-     * @param userId l'id de l'utilisateur
+     * @param userId l'id de l'admin qui fait l'action
      * @return L'objet User hydraté
      */
     @GetMapping("/user/me")
@@ -93,7 +93,7 @@ public class UserController {
 
     /**
      * Renvoi la liste des utilisateurs de l'application
-     * @param userId l'id de l'utilisateur
+     * @param userId l'id de l'admin qui fait l'action
      * @return La liste des utilisateurs
      */
     @GetMapping("/users")
@@ -114,7 +114,8 @@ public class UserController {
 
     /**
      * Supprime un utilisateur
-     * @param userId l'id de l'utilisateur à supprimer
+     * @param id l'id de l'utilisateur à supprimer
+     * @param userId l'id de l'admin qui fait l'action
      */
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id, @RequestHeader("user-id") int userId) {
@@ -134,8 +135,8 @@ public class UserController {
 
     /**
      * Renvoi la liste des utilisateurs de l'application
-     * @param userId l'id de l'utilisateur
-     * @return L'objet User hydraté
+     * @param newUser l'utilisateur à ajouter
+     * @param userId l'id de l'admin qui fait l'action
      */
     @PostMapping("/users")
     public void addUser(@RequestBody User newUser, @RequestHeader("user-id") int userId) {
