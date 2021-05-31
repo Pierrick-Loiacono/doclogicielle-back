@@ -169,9 +169,10 @@ public class ProductProviderService {
 
     /**
      * Update product in list
-     * @param product updated product
+     * @param provider updated product
      */
     public void updateProvider(final Provider provider) {
+        System.out.println(provider);
         for(Provider p : this.providers) {
             if(p.getId().equals(provider.getId())) {
                 p.setAddress(provider.getAddress());

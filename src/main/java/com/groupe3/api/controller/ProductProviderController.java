@@ -120,8 +120,8 @@ public class ProductProviderController {
      * @param productId l'id du produit à supprimer
      * @param userId l'id de l'utilisateur
      */
-    @DeleteMapping("/product")
-    public void deleteProduct(@RequestBody int productId, @RequestHeader("user-id") int userId) {
+    @DeleteMapping("/product/{productId}")
+    public void deleteProduct(@PathVariable int productId, @RequestHeader("user-id") int userId) {
 
         Optional<User> opt_user = this.us.getById(userId);
 
@@ -243,8 +243,8 @@ public class ProductProviderController {
      * @param providerId l'id du provider à supprimer
      * @param userId l'id de l'utilisateur
      */
-    @DeleteMapping("/provider")
-    public void deleteProvider(@RequestBody int providerId, @RequestHeader("user-id") int userId) {
+    @DeleteMapping("/provider/{providerId}")
+    public void deleteProvider(@PathVariable int providerId, @RequestHeader("user-id") int userId) {
 
         Optional<User> opt_user = this.us.getById(userId);
 
@@ -287,10 +287,9 @@ public class ProductProviderController {
             // Seuls les admins on le droit d'update des provider
             if(opt_user.get().getUsertype() == Usertype.ADMIN) {
 
-                Optional<Product> opt_produit = this.ps.getProductById(id);
+                Optional<Provider> opt_provider = this.ps.getProviderById(id);
 
-                if(opt_produit.isPresent()) {
-
+                if(opt_provider.isPresent()) {
                     this.ps.updateProvider(updated);
 
                 } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provider not found");

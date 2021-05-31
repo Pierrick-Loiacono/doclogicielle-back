@@ -4,7 +4,7 @@
     "products": [
       {
         "id": 1,
-        "quantity": 14
+        "quantity": 14452
       },
       {
         "id": 2,
@@ -42,6 +42,6 @@
       }
     ],
     "price": 12232,
-    "state": "FINISHED",
+    "state": "FINISHED"
   }
 ]

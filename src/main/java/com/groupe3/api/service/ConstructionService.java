@@ -1,6 +1,7 @@
 package com.groupe3.api.service;
 
 import com.groupe3.api.model.Construction;
+import com.groupe3.api.model.ConstructionSteps;
 import com.groupe3.api.model.Product;
 import com.groupe3.api.model.Provider;
 
@@ -8,6 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service of Chantier class
@@ -28,11 +33,14 @@ public class ConstructionService {
 
     private ArrayList<Construction> constructions;
 
+    private ProductProviderService pps;
     /**
      * Constructor
      */
-    public ConstructionService() {
+    @Autowired
+    public ConstructionService(ProductProviderService pps) {
         this.constructions = new ArrayList<>();
+        this.pps = pps;
 
         JSONParser jsonParser = new JSONParser();
 
@@ -65,22 +73,27 @@ public class ConstructionService {
     private void parseConstructionsObject(JSONObject us)
     {
 
-        JSONObject provider = (JSONObject) us.get("provider");
+        JSONArray products = (JSONArray) us.get("products");
+        HashMap<Product, Integer> productList = new HashMap<>();
 
-        this.providers.add(new Provider(
-                (Long) provider.get("id"),
-                (String) provider.get("firmName"),
-                (String) provider.get("address"),
-                (String) provider.get("phone")
+        products.forEach(p -> {
+            JSONObject obj = (JSONObject) p;
+            Long id = (Long) obj.get("id");
+
+            Optional<Product> product = this.pps.getProductById(id.intValue());
+            if(product.isPresent()) {
+                Long quantity = (Long) obj.get("quantity");
+                productList.put(product.get(), quantity.intValue() );
+            }
+        });
+        
+        this.constructions.add(new Construction(
+            (Long) us.get("id"),
+            productList,
+            (Long) us.get("price"),
+            ConstructionSteps.valueOf((String) us.get("state"))
         ));
 
-        this.products.add(new Product(
-                (Long) us.get("id"),
-                (String) us.get("designation"),
-                (Long) us.get("price"),
-                (Long) us.get("quantity"),
-                this.providers.get(0)
-        ));
     }
 
     /**
@@ -124,6 +137,10 @@ public class ConstructionService {
                 break;
             }
         }
+    }
+
+    public List<Construction> getConstructionsByState(final ConstructionSteps step) {
+        return this.constructions.stream().filter(c -> c.getState().equals(step)).collect(Collectors.toList());
     }
 
 }
